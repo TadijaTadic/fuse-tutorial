@@ -1,0 +1,26 @@
+<App Background="#022328">
+    <iOS.StatusBarConfig Style="Light" />
+	<Android.StatusBarConfig Color="#022328" />
+    <JavaScript File="main.js" />
+    <Exit ux:Global="Exit" />
+
+    <Router ux:Name="router" />
+
+    <ClientPanel>
+        <Navigator DefaultPath="splash">
+            <SplashPage ux:Template="splash" router="router" Activated="{activated}" Deactivated="{deactivated}">
+            </SplashPage>
+            <HomePage ux:Template="home" router="router"/>
+            <EditHikePage ux:Template="editHike" router="router" />
+        </Navigator>
+        <OnBackButton>
+            <WhileTrue Value="{ShouldExit}" Bypass="Never">
+                <JavaScript>
+                    var Exit = require("Exit");
+                    Exit.exit();
+                </JavaScript>
+            </WhileTrue>
+        </OnBackButton>
+    </ClientPanel>
+
+</App>
